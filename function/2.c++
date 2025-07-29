@@ -12,3 +12,4 @@ int main(){
     cout<<"pictorial"<<pic(3)<<endl;
     return 0;
 }
+
