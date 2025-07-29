@@ -2,7 +2,7 @@
 using namespace std;
 
 int main() {
-    int numbers[] = {10, 20, 30, 40, 50};
+    int numbers[] = {10, 20, 30, 40, 50,10000000000000};
     int size = sizeof(numbers) / sizeof(numbers[0]);
 
     cout << "Array elements:" << endl;
