@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VPKBIET Login</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #b3c8ef, #d7d5f4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .login-card {
+      display: flex;
+      width: 1300px;   /* 🔹 Increased width in row direction */
+      min-height: 650px;
+      background: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    /* Left panel with big image */
+    .login-left {
+      flex: 1;
+      background: url('/web_dev/co.webp') no-repeat center center;
+      background-size: cover;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 40px 20px;
+      color: white;
+      min-height: 650px;
+    }
+
+    .login-left::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.4); /* dark overlay */
+    }
+
+    .login-left h2, .login-left p {
+      position: relative;
+      z-index: 1;
+    }
+
+    .login-left h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .login-left p {
+      font-size: 14px;
+    }
+
+    /* Right panel */
+    .login-right {
+      flex: 2;
+      padding: 40px;
+    }
+
+    .login-right h2 {
+      margin-bottom: 20px;
+      font-weight: 600;
+      color: #222;
+    }
+
+    .toggle-btns {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .toggle {
+      flex: 1;
+      padding: 10px;
+      border-radius: 25px;
+      border: 2px solid #4f7cff;
+      background: transparent;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .toggle.active {
+      background: #4f7cff;
+      color: #fff;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    .input-group input:focus {
+      border-color: #4f7cff;
+      box-shadow: 0 0 5px rgba(79, 124, 255, 0.5);
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    .options a {
+      color: #4f7cff;
+      text-decoration: none;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #4f7cff, #00c6ff);
+      border: none;
+      border-radius: 25px;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .login-btn:hover {
+      opacity: 0.9;
+    }
+
+    .divider {
+      text-align: center;
+      margin: 20px 0;
+      position: relative;
+      color: #999;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      position: absolute;
+      width: 40%;
+      height: 1px;
+      background: #ccc;
+      top: 50%;
+    }
+
+    .divider::before {
+      left: 0;
+    }
+
+    .divider::after {
+      right: 0;
+    }
+
+    .social-login {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-login button {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .google {
+      background: #db4437;
+      color: #fff;
+    }
+
+    .facebook {
+      background: #4267B2;
+      color: #fff;
+    }
+
+    .google:hover,
+    .facebook:hover {
+      opacity: 0.9;
+    }
+
+    .register {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .register a {
+      color: #4f7cff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    @media (max-width: 1000px) {
+      .login-card {
+        flex-direction: column;
+        width: 95%;
+        min-height: auto;
+      }
+
+      .login-left {
+        height: 250px;
+        min-height: auto;
+        justify-content: center;
+      }
+
+      .login-left h2, .login-left p {
+        font-size: 16px;
+      }
+
+      .login-right {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="login-card">
+      <div class="login-left">
+        <h2>VPKBIET BARAMATI</h2>
+        <B><p>Empowering Students Through Technology</p></B>
+        <!-- <p>Empowering Students Through Technology</p> -->
+      </div>
+
+      <div class="login-right">
+        <h2>Login as</h2>
+        <div class="toggle-btns">
+          <button class="toggle active">Student</button>
+          <button class="toggle">Admin</button>
+        </div>
+
+        <form>
+          <div class="input-group">
+            <input type="email" placeholder="Enter your email" required>
+          </div>
+          <div class="input-group">
+            <input type="password" placeholder="Enter your password" required>
+          </div>
+
+          <div class="options">
+            <label><input type="checkbox"> Remember me</label>
+            <a href="#">Forgot Password?</a>
+          </div>
+
+          <button type="submit" class="login-btn">Log in</button>
+
+          <div class="divider">or</div>
+
+          <div class="social-login">
+            <button class="google">Login with Google</button>
+            <button class="facebook">Login with Facebook</button>
+          </div>
+        </form>
+
+        <p class="register">Don’t have an account? <a href="#">Register here</a></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
