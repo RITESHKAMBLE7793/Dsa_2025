@@ -1,3 +1,5 @@
+package Dsa_2025;
+
 class BinaryTree {
 
     // Node class
